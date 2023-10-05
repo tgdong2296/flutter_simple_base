@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_simple_base/domain/architecture/view_model_type.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_navigator.dart';
+import 'package:flutter_simple_base/scenes/tabbar/tabbar_type.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_usecase.dart';
 import 'package:get/get.dart' hide navigator;
 import 'package:mobx/mobx.dart';
@@ -10,8 +12,25 @@ class TabBarViewModel = _TabBarViewModel with _$TabBarViewModel;
 
 abstract class _TabBarViewModel extends ViewModelType<TabBarUseCaseType, TabBarNavigatorType, void> with Store {
 
-  @override
-  void onInit() async {
-    super.onInit();
+  final tabs = <TabBarType>[
+    TabBarType.home,
+    TabBarType.orders,
+    TabBarType.achievement,
+    TabBarType.userProfile,
+  ];
+
+  final List<Widget> screens = [
+    Container(color: Colors.deepPurpleAccent),
+    Container(color: Colors.amber),
+    Container(color: Colors.deepOrange),
+    Container(color: Colors.cyan),
+  ];
+
+  @observable
+  int currentTabIndex = 0;
+
+  @action
+  void onTabChanged(int index) {
+    currentTabIndex = index;
   }
 }

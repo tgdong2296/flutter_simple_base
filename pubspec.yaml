@@ -11,29 +11,61 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+
   # Code base
   get: ^4.6.6
   mobx: ^2.1.3
   flutter_mobx: ^2.0.6+5
 
+  # Networking
+  dio: ^5.1.1
+  retrofit: ^4.0.1
+
+  # Image Loader
+  cached_network_image: ^3.2.3
+  flutter_svg: ^2.0.7
+
   # A flutter plugin let your UI display a reasonable layout on different screen sizes!
   flutter_screenutil: ^5.9.0
+
+  # UI
+  cupertino_icons: ^1.0.2
+  animated_bottom_navigation_bar: ^1.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.3.3
+  flutter_gen_runner: ^5.3.2
   mobx_codegen: ^2.1.1
   flutter_lints: ^2.0.0
+
+flutter_gen:
+  output: lib/gen/ # Optional (default: lib/gen/)
+  line_length: 80 # Optional (default: 80)
+
+  # Optional
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
+    lottie: true
+
+  assets:
+    enabled: true
+
+  font:
+    enabled: true
+
+  colors:
+    inputs:
+      - assets/colors/colors.xml
 
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+   - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
