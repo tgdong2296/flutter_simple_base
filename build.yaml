@@ -9,7 +9,3 @@ targets:
         options:
           build_extensions:
             '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
-      mobx_codegen:
-        options:
-          build_extensions:
-            '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
