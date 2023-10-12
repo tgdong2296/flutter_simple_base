@@ -8,10 +8,10 @@ extension BottomNavigationBar on TabBarView {
           itemCount: viewModel.tabs.length,
           activeIndex: viewModel.currentTabIndex,
           gapLocation: GapLocation.none,
-          leftCornerRadius: 32,
-          rightCornerRadius: 32,
+          leftCornerRadius: 0,
+          rightCornerRadius: 0,
           height: 64,
-          backgroundColor: ColorName.redVermilionBird,
+          backgroundColor: ColorName.hex1F2328,
           shadow: BoxShadow(
             offset: const Offset(0, 4),
             blurRadius: 10,

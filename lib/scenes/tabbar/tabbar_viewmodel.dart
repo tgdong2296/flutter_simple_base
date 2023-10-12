@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_base/domain/architecture/view_model_type.dart';
+import 'package:flutter_simple_base/scenes/app/app_pages.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_navigator.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_type.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_usecase.dart';
@@ -20,7 +21,7 @@ abstract class _TabBarViewModel extends ViewModelType<TabBarUseCaseType, TabBarN
   ];
 
   final List<Widget> screens = [
-    Container(color: Colors.deepPurpleAccent),
+    AppPages.getPage(RouteName.home)?.page() ?? Container(),
     Container(color: Colors.amber),
     Container(color: Colors.deepOrange),
     Container(color: Colors.cyan),

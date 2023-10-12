@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_base/domain/architecture/view_type.dart';
 import 'package:flutter_simple_base/gen/colors.gen.dart';
+import 'package:flutter_simple_base/scenes/home/home_view.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_navigator.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_type.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_usecase.dart';
@@ -19,6 +20,7 @@ class TabBarBinding implements Bindings {
     Get.put<TabBarNavigatorType>(TabBarNavigator());
     Get.put<TabBarViewModel>(TabBarViewModel());
 
+    HomeBinding().dependencies();
   }
 }
 
@@ -30,9 +32,9 @@ class TabBarView extends ViewType<TabBarViewModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: _buildTabBar(context),
-      body: Container(
-        color: Colors.white,
-      ),
+      body: Observer(builder: (BuildContext context) {
+        return IndexedStack(index: viewModel.currentTabIndex, children: viewModel.screens);
+      }),
     );
   }
 
