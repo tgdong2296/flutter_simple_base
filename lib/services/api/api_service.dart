@@ -12,5 +12,5 @@ abstract class APIService {
   static final APIService shared = APIService();
 
   @GET('/search/repositories')
-  Future<GithubRepoOutput> fetchUsers(@Queries() Map<String, dynamic> queryParameters);
+  Future<GithubRepoOutput> fetchRepositories(@Queries() Map<String, dynamic> queries);
 }

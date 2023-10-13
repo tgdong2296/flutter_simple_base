@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class RequestInterceptor extends InterceptorsWrapper {
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     handler.next(options);
   }
 

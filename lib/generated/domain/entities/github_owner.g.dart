@@ -9,13 +9,13 @@ part of '../../../domain/entities/github_owner.dart';
 _$GithubOwnerImpl _$$GithubOwnerImplFromJson(Map<String, dynamic> json) =>
     _$GithubOwnerImpl(
       id: json['id'] as int,
-      avatarURL: json['avatarURL'] as String? ?? "",
+      avatarURL: json['avatar_url'] as String? ?? "",
       url: json['url'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$GithubOwnerImplToJson(_$GithubOwnerImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'avatarURL': instance.avatarURL,
+      'avatar_url': instance.avatarURL,
       'url': instance.url,
     };

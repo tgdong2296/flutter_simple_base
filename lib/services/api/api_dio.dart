@@ -13,7 +13,7 @@ class APIDio extends DioMixin implements Dio {
   final receiveTimeout = 30 * 1000; // Milli seconds
   final sendTimeout = 30 * 1000; // Milli seconds
 
-  static APIDio getInstance({ BaseOptions? options}) => APIDio._(options: options);
+  static APIDio getInstance({ BaseOptions? options }) => APIDio._(options: options);
 
   APIDio._({ BaseOptions? options }) {
     /// Config Options

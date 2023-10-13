@@ -19,11 +19,11 @@ class _APIService implements APIService {
   String? baseUrl;
 
   @override
-  Future<GithubRepoOutput> fetchUsers(
-      Map<String, dynamic> queryParameters) async {
+  Future<GithubRepoOutput> fetchRepositories(
+      Map<String, dynamic> queries) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.addAll(queryParameters);
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio

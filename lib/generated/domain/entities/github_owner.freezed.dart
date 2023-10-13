@@ -21,7 +21,9 @@ GithubOwner _$GithubOwnerFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GithubOwner {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
   String get avatarURL => throw _privateConstructorUsedError;
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +38,10 @@ abstract class $GithubOwnerCopyWith<$Res> {
           GithubOwner value, $Res Function(GithubOwner) then) =
       _$GithubOwnerCopyWithImpl<$Res, GithubOwner>;
   @useResult
-  $Res call({int id, String avatarURL, String url});
+  $Res call(
+      {int id,
+      @JsonKey(name: 'avatar_url') String avatarURL,
+      @JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -81,7 +86,10 @@ abstract class _$$GithubOwnerImplCopyWith<$Res>
       __$$GithubOwnerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String avatarURL, String url});
+  $Res call(
+      {int id,
+      @JsonKey(name: 'avatar_url') String avatarURL,
+      @JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -120,7 +128,9 @@ class __$$GithubOwnerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GithubOwnerImpl implements _GithubOwner {
   const _$GithubOwnerImpl(
-      {required this.id, this.avatarURL = "", this.url = ""});
+      {required this.id,
+      @JsonKey(name: 'avatar_url') this.avatarURL = "",
+      @JsonKey(name: 'url') this.url = ""});
 
   factory _$GithubOwnerImpl.fromJson(Map<String, dynamic> json) =>
       _$$GithubOwnerImplFromJson(json);
@@ -128,10 +138,10 @@ class _$GithubOwnerImpl implements _GithubOwner {
   @override
   final int id;
   @override
-  @JsonKey()
+  @JsonKey(name: 'avatar_url')
   final String avatarURL;
   @override
-  @JsonKey()
+  @JsonKey(name: 'url')
   final String url;
 
   @override
@@ -171,8 +181,8 @@ class _$GithubOwnerImpl implements _GithubOwner {
 abstract class _GithubOwner implements GithubOwner {
   const factory _GithubOwner(
       {required final int id,
-      final String avatarURL,
-      final String url}) = _$GithubOwnerImpl;
+      @JsonKey(name: 'avatar_url') final String avatarURL,
+      @JsonKey(name: 'url') final String url}) = _$GithubOwnerImpl;
 
   factory _GithubOwner.fromJson(Map<String, dynamic> json) =
       _$GithubOwnerImpl.fromJson;
@@ -180,8 +190,10 @@ abstract class _GithubOwner implements GithubOwner {
   @override
   int get id;
   @override
+  @JsonKey(name: 'avatar_url')
   String get avatarURL;
   @override
+  @JsonKey(name: 'url')
   String get url;
   @override
   @JsonKey(ignore: true)

@@ -6,6 +6,7 @@ extension HomeListView on HomeView {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: items.length,
+      padding: const EdgeInsets.only(top: 16, bottom: 32),
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
           onTap: () {},

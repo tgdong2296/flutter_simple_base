@@ -14,7 +14,7 @@ class HomeUseCase implements HomeUseCaseType {
       "per_page": 30,
       "page": page
     };
-    final output = await APIService.shared.fetchUsers(queryParameters);
+    final output = await APIService.shared.fetchRepositories(queryParameters);
     return output.githubRepos;
   }
 }
