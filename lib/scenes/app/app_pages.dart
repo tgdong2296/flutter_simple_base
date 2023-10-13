@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_simple_base/scenes/app/app_view.dart';
 import 'package:flutter_simple_base/scenes/home/home_view.dart';
+import 'package:flutter_simple_base/scenes/repo_detail/repo_detail_view.dart';
 import 'package:flutter_simple_base/scenes/tabbar/tabbar_view.dart';
 import 'package:get/get.dart';
 
 abstract class RouteNestedKey {
-
+  static const home = 1000;
 }
 
 abstract class RouteName {
@@ -21,6 +22,8 @@ abstract class RouteName {
   static const achievement = "/achievement";
 
   static const userProfile = "/userProfile";
+
+  static const repoDetail = "/repoDetail";
 }
 
 class AppPages {
@@ -42,6 +45,18 @@ class AppPages {
       name: RouteName.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      children: [
+        GetPage(
+          name: RouteName.repoDetail,
+          page: () => const RepoDetailView(),
+          binding: RepoDetailBinding(),
+        )
+      ]
+    ),
+    GetPage(
+      name: RouteName.repoDetail,
+      page: () => const RepoDetailView(),
+      binding: RepoDetailBinding(),
     )
   ];
 
@@ -64,7 +79,7 @@ class AppPages {
     if (routeName == RouteName.initial) {
       return GetPageRoute(routeName: RouteName.initial, page: rootPage.page, binding: rootPage.binding);
     } else {
-      final childPage = rootPage.children.where((element) => element.name == pageName).first;
+      final childPage = rootPage.children.where((element) => element.name == routeName).first;
       return GetPageRoute(routeName: childPage.name, page: childPage.page, binding: childPage.binding);
     }
   }

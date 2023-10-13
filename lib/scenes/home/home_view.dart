@@ -1,10 +1,10 @@
-import 'dart:ffi';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_simple_base/domain/architecture/view_type.dart';
 import 'package:flutter_simple_base/domain/entities/github_repo.dart';
 import 'package:flutter_simple_base/gen/colors.gen.dart';
+import 'package:flutter_simple_base/scenes/app/app_pages.dart';
 import 'package:flutter_simple_base/scenes/common/image_view/common_network_image_view.dart';
 import 'package:flutter_simple_base/scenes/home/home_navigator.dart';
 import 'package:flutter_simple_base/scenes/home/home_usecase.dart';
@@ -29,6 +29,14 @@ class HomeView extends ViewType<HomeViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    return CupertinoTabView(
+      navigatorKey: Get.nestedKey(RouteNestedKey.home),
+      builder: _buildViews,
+      onGenerateRoute: (settings) => AppPages.getPageRoute(RouteName.home, settings),
+    );
+  }
+
+  Widget _buildViews(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
       body: SafeArea(

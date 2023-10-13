@@ -3,6 +3,7 @@ import 'package:flutter_simple_base/domain/architecture/view_model_type.dart';
 import 'package:flutter_simple_base/domain/entities/github_repo.dart';
 import 'package:flutter_simple_base/scenes/home/home_navigator.dart';
 import 'package:flutter_simple_base/scenes/home/home_usecase.dart';
+import 'package:flutter_simple_base/scenes/repo_detail/repo_detail_dto.dart';
 import 'package:get/get.dart' hide navigator;
 import 'package:mobx/mobx.dart';
 
@@ -28,5 +29,14 @@ extension HomeViewModelData on _HomeViewModel {
   Future<void> loadRepositories() async {
     final repos = await useCase.fetchGithubRepositories(1);
     githubRepos = repos;
+  }
+}
+
+extension HomeViewModelAction on _HomeViewModel {
+
+  @action
+  Future<void> toRepoDetail(GithubRepo repo) async {
+    final dto = RepoDetailDTO(repo);
+    navigator.toRepoDetail(dto);
   }
 }

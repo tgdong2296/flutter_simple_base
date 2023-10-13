@@ -9,7 +9,9 @@ extension HomeListView on HomeView {
       padding: const EdgeInsets.only(top: 16, bottom: 32),
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            viewModel.toRepoDetail(items[index]);
+          },
           child: _buildItemView(context, items[index]),
         );
       },
