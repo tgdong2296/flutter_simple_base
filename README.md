@@ -24,7 +24,7 @@ In this, we will use some core dependencies:
 
 MVVM is a architecture consisting of three main components: View - View Model - Model, created with the purpose of simplifying user interface event programming.
 
-![MVVM](github_assets/mvvm.webp "MVVM")
+![MVVM](github_assets/mvvm.png "MVVM")
 
 ### MVVM components
 
@@ -51,11 +51,6 @@ In terms of structure, Clean architecture consists of three main components:
 In the Domain layer, we store Entities, base class for architecture, etc, which are the fundamental components of the application. All Entities within the Domain are completely independent and do not depend on any other components of the application.
 
 ```dart
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part '../../generated/domain/entities/github_owner.freezed.dart';
-part '../../generated/domain/entities/github_owner.g.dart';
-
 @freezed
 class GithubOwner with _$GithubOwner {
   const factory GithubOwner({
@@ -69,12 +64,6 @@ class GithubOwner with _$GithubOwner {
 ```
 
 ```dart
-import 'package:flutter_simple_base/domain/entities/github_owner.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part '../../generated/domain/entities/github_repo.freezed.dart';
-part '../../generated/domain/entities/github_repo.g.dart';
-
 @freezed
 class GithubRepo with _$GithubRepo {
   const factory GithubRepo({
@@ -96,13 +85,6 @@ class GithubRepo with _$GithubRepo {
 Platform layer includes services for application, such as API service, local data service, etc. They will be implemented in platform layer and interact directly with domain layer.
 
 ```dart
-import 'package:dio/dio.dart';
-import 'package:flutter_simple_base/services/api/api_dio.dart';
-import 'package:flutter_simple_base/services/api/output/github_repo_output.dart';
-import 'package:retrofit/retrofit.dart';
-
-part '../../generated/services/api/api_service.g.dart';
-
 @RestApi()
 abstract class APIService {
   factory APIService() => _APIService(APIDio.getInstance());
@@ -121,9 +103,6 @@ abstract class APIService {
 The View will extend a abstract class called `ViewType`. When any View extends this abstract class, it has a property called viewModel responsible for holding an instance of the ViewModel within the View.
 
 ```dart
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-
 abstract class ViewType<ViewModel extends GetxController> extends StatelessWidget {
 
   const ViewType({super.key});
@@ -135,22 +114,6 @@ abstract class ViewType<ViewModel extends GetxController> extends StatelessWidge
 In the following code, beside View we have a class which called Binding. Bindings are dependency injection classes. They are completely outside your widget tree, making your code cleaner, more organized, and allowing you to access it anywhere without context. You can initialize dozens of controllers in your Bindings, when you need to know what is being injected into your view, just open the Bindings and that's it, you can clearly see what has been prepared to be initialized in your View. Bindings is the first step towards having a scalable application, you can visualize what will be injected into your page, and decouple the dependency injection from your visualization layer.
 
 ```dart
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_simple_base/domain/architecture/view_type.dart';
-import 'package:flutter_simple_base/domain/entities/github_repo.dart';
-import 'package:flutter_simple_base/gen/colors.gen.dart';
-import 'package:flutter_simple_base/scenes/app/app_pages.dart';
-import 'package:flutter_simple_base/scenes/common/image_view/common_network_image_view.dart';
-import 'package:flutter_simple_base/scenes/home/home_navigator.dart';
-import 'package:flutter_simple_base/scenes/home/home_usecase.dart';
-import 'package:flutter_simple_base/scenes/home/home_viewmodel.dart';
-import 'package:get/get.dart';
-
-part 'components/home_item_view.dart';
-part 'components/home_list_view.dart';
-
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
@@ -194,8 +157,6 @@ class HomeView extends ViewType<HomeViewModel> {
 ##### **ViewModel**
 
 ```dart
-import 'package:get/get.dart';
-
 abstract class ViewModelType<UseCaseType, NavigatorType, ArgumentType> extends GetxController {
 
   UseCaseType get useCase => GetInstance().find<UseCaseType>()!;
@@ -231,16 +192,6 @@ ViewModel's responsibilities are prepare and transfer data. When we have somethi
 GetX and MobX are two dependencies help us manage application state easier by `GetxController` in GetX and `Store` in MobX. Clesses will reduce number line of code, easy read and scale in the future.
 
 ```dart
-import 'package:flutter_simple_base/domain/architecture/view_model_type.dart';
-import 'package:flutter_simple_base/domain/entities/github_repo.dart';
-import 'package:flutter_simple_base/scenes/home/home_navigator.dart';
-import 'package:flutter_simple_base/scenes/home/home_usecase.dart';
-import 'package:flutter_simple_base/scenes/repo_detail/repo_detail_dto.dart';
-import 'package:get/get.dart' hide navigator;
-import 'package:mobx/mobx.dart';
-
-part '../../generated/scenes/home/home_viewmodel.g.dart';
-
 class HomeViewModel = _HomeViewModel with _$HomeViewModel;
 
 abstract class _HomeViewModel extends ViewModelType<HomeUseCaseType, HomeNavigatorType, void> with Store {
@@ -279,9 +230,6 @@ extension HomeViewModelAction on _HomeViewModel {
 Use Case responsibility is contains detailed logical, calculate functions, or anything related to logical. Each screen, we have own UseCase. Its help us easy to maintain application and reduce risk when want to update a screen.
 
 ```dart
-import 'package:flutter_simple_base/domain/entities/github_repo.dart';
-import 'package:flutter_simple_base/services/api/api_service.dart';
-
 abstract class HomeUseCaseType {
   Future<List<GithubRepo>> fetchGithubRepositories(int page);
 }
@@ -301,10 +249,6 @@ Navigator has main responsibility is navigate between two screens or show bottom
 In this, GetX help us inject `Navigator` object and manage `Route` easier. We can navigate to other screen neither use NestedKey or not.
 
 ```dart
-import 'package:flutter_simple_base/scenes/app/app_pages.dart';
-import 'package:flutter_simple_base/scenes/repo_detail/repo_detail_dto.dart';
-import 'package:get/get.dart';
-
 abstract class HomeNavigatorType {
   toRepoDetail(RepoDetailDTO dto);
 }
