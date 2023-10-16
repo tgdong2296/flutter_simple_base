@@ -7,9 +7,9 @@ abstract class HomeNavigatorType {
 }
 
 class HomeNavigator implements HomeNavigatorType {
+
   @override
   toRepoDetail(RepoDetailDTO dto) {
     Get.toNamed(RouteName.repoDetail, arguments: dto, id: RouteNestedKey.home);
   }
-
 }
